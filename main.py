@@ -1,8 +1,14 @@
-"""Traer la variable que está dentro del módulo hello"""
-from hello import MSG  #Una manera de importar el contenido del módulo hello
-import hello as hi  #Segunda manera de importar hello renombrandolo, lo trae el como objeto
+"""Librería Random de Python"""
+import random as r
 
-print (MSG)
-print ("Hola Mundo")
+#print(dir(r)) #Se muestran las funciones dentro de esta librería
 
-print(hi.saludar)
+#print (r.randint(1 , 100)) #Metodo randint para generar un número aleatorio
+
+random_number = r.randint(1 , 100) #Declarar una variable que guarde el numero aleatorio
+
+print (random_number)
+
+player = input("Ingresa un número aleatorio entre el 1 y 100: ") #Función input para que la usuaria escriba un número
+
+print(player) #Se imprime el numero que haya ingresado la usuaria
