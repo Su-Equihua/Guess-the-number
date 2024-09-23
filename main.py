@@ -1,48 +1,56 @@
 """Librería Random de Python"""
 import random as r
+import time
 
-#print(dir(r)) #Se muestran las funciones dentro de esta librería
-#print (r.randint(1 , 100)) #Metodo randint para generar un número aleatorio
-#random_number = r.randint(1 , 100) #Declarar una variable que guarde el numero aleatorio
-#print (random_number)
-
-#Función principal para el control del juego
+#Función de control del juego
 def guess_the_number():
     #Bienvenida al juego
-    print("Bienvenidos a Guess The Number\nTu o la computadora adivinarán el número correcto")
+    print("\n----¡Bienvenida a Guess The Number!---- \nVeremos quién adivina primero el número secreto")
     print("Creando el número secreto...")
-    random_number = r.randint(1 , 100)
-    print (f"Número a adivinar: {random_number}")
-    girlplayer_number = int(input("Ingresa un número aleatorio entre el 1 y 100: "))
-    # int( ) para convertir el valor de input en numero
-    #print (girlplayer_number)
+    time.sleep(2)
 
-    #while girlplayer_number != random_number: #Mientras la expresión sea verdadera
-    while True: #La sentencia puede funcionar tanto para el caso de la jugadora como de la computadora
-        #if girlplayer_number is not None: #Sentencia no necesaria
-        if 1 <= girlplayer_number <= 100: #Verificar que se encuentre dentro del rango
-            if girlplayer_number > random_number:
-                girlplayer_number = (int(input("El número es menor: ")))
-            elif girlplayer_number < random_number:
-                girlplayer_number = (int(input("El número es mayor: ")))
+    random_number = r.randint(1 , 100) #Numero a adivinar
+    print (f"Número a adivinar es: {random_number}")
+
+    turn = "Jugadora" #Inicia el juego con la jugadora
+
+    while True: #La sentencia funciona para alternar los turnos del juego
+
+        if turn == "Jugadora":
+            print (f"\n----Round:{turn}----")
+            girlplayer_number = int(input("Ingresa un número entero entre el 1 y 100: "))
+         
+            if 1 <= girlplayer_number <= 100:  #Verificar que se encuentre dentro del rango
+                if girlplayer_number > random_number:
+                    print ("El número es menor, vuelve a intentarlo")
+                elif girlplayer_number < random_number:
+                    print ("El numero es mayor, vuelve a intentarlo")
+                else:
+                    print("¡Felicidades, adivinaste el número correcto!")
+                    print("Computadora, tu has perdido")
+                    break #Termina el juego
             else:
-                print("¡Felicidades, adivinaste el número correcto!")
-                break #Termina el juego
-        else:
-            girlplayer_number = int(input("Recuerda debe ser un número entre 1 y 100: "))
+                print  ("Recuerda debe ser un número entre 1 y 100")
+            
+            turn = "Computadora"
+            time.sleep(1.5)
 
-        computer_player_number = r.randint(1 , 100)
-        print ("Ingresa un número aleatorio del 1 al 100: " + str(computer_player_number))
-        if computer_player_number < random_number:
-            pista = input("Dame una pista, el número es mayor o menor: ")
-        if pista == "mayor":
-            lower_bound = computer_player_number + 1
-            computer_player_number = r.randint (lower_bound, 100)
-        elif pista == "menor":
-            upper_bound = computer_player_number - 1
-            computer_player_number = r.randint(1 , upper_bound)
-        else:
-            print ("¡Felicidades, adivinaste el número correcto!")
+        else: #Turno de la computadora
+            print (f"\n----Round:{turn}----")
+            computer_player_number = r.randint(1 , 100)
+            print ("La computadora ha elegido el número: " + str(computer_player_number))
+
+            if computer_player_number < random_number:
+                print ("El numero es mayor, vuelve a intentarlo")
+            elif computer_player_number > random_number:
+                print ("El numero es menor, vuelve a intentarlo")
+            else:
+                print ("¡Felicidades, adivinaste el número correcto!")
+                print("Jugadora, tu has perdido")
+                break
+                
+            turn = "Jugadora"
+            time.sleep(1.5)
         
 
 guess_the_number()
