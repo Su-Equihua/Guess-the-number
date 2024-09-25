@@ -2,7 +2,8 @@
 import random as r
 import time
 
-#Función de control del juego
+#Función de control de turnos del juego
+
 def guess_the_number():
     #Bienvenida al juego
     print("\n----¡Bienvenida a Guess The Number!---- \nVeremos quién adivina primero el número secreto")
@@ -28,6 +29,7 @@ def guess_the_number():
                 else:
                     print("¡Felicidades, adivinaste el número correcto!")
                     print("Computadora, tu has perdido")
+                    start_game_again(guess_the_number)
                     break #Termina el juego
             else:
                 print  ("Recuerda debe ser un número entre 1 y 100")
@@ -47,10 +49,10 @@ def guess_the_number():
             else:
                 print ("¡Felicidades, adivinaste el número correcto!")
                 print("Jugadora, tu has perdido")
+                start_game_again(guess_the_number)
                 break
                 
             turn = "Jugadora"
             time.sleep(1.5)
-        
 
 guess_the_number()
