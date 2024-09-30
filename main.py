@@ -25,16 +25,15 @@ def generate_random_number():
 #Función para el turno de la jugadora
 def get_player_number():
     # Manejo de excepciones
-    try:
-        player_number = int(input("Elige un número entero entre el 1 y 100: "))
-        if MIN_NUMBER <= player_number <= MAX_NUMBER:
-            return  player_number
-        else:
-            print  ("Recuerda, debe ser un número entre 1 y 100.\nInténtalo en tu siguiente turno")
-            return None
-    except ValueError: #No se recibió un número entero
-        print("Recuerda debe ser un NÚMERO entero. Inténtalo otra vez")
-        return None
+    while True:
+        try:
+            player_number = int(input("Elige un número entero entre el 1 y 100: "))
+            if MIN_NUMBER <= player_number <= MAX_NUMBER:
+                return  player_number
+            else:
+                print  ("El número debe estar entre 1 y 100. Por favor, intenta de nuevo.")
+        except ValueError: #No se recibió un número entero
+            print("Entrada no válida. Debe ser un NÚMERO entero. Inténtalo otra vez.")
 
 #Función para obtener el numero del ordenador
 def generate_computer_number():
@@ -110,11 +109,12 @@ def guess_the_number():
 
             turn = "Jugadora"
 
-guess_the_number()
-
 # generate_random_number()
 # get_girlplayer_number()
 # generate_computer_number()
 # comparison_number(36 , 36)
 # girlplayer_name("name")
 # start_game_again(guess_the_number)
+
+if __name__ == "__main__":
+    guess_the_number()
